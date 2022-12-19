@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+      <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+      <property name="connection.url">jdbc:mysql://localhost:3306/mywork</property>
+      <property name = "connection.driver_class">src.main.resources.Driver</property> <!--com.mysql.js.jdbc.Driver-->
+
+      <!-- NOTE that after automapping with IDEA property username and password will delete
+       (после автоматического сопоставления с IDEA имя пользователя и пароль свойства будут удалены)-->
+      <!--and will be:  Initial SessionFactory failedorg.hibernate.service.spi.ServiceException: Unable to create requested service
+      (и будет: Сбой начальной SessionFactory org.hibernate.service.spi.ServiceException: не удается создать запрошенную службу)-->
+        <property name="connection.username"/>root/>
+        <property name="connection.password"/>root/>
+
+        <!-- NOTE that after automapping with IDEA property username and password will delete
+      (после автоматического сопоставления с IDEA имя пользователя и пароль свойства будут удалены)-->
+        <mapping class="ru.Hibernate.javastudy.dao.ContactEntity"/>
+        <mapping class="ru.Hibernate.javastudy.dao.ContactHobbyDetailEntity"/>
+        <mapping class="ru.Hibernate.javastudy.dao.ContactTelDetailEntity"/>
+        <mapping class="ru.Hibernate.javastudy.dao.HobbyEntity"/>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
