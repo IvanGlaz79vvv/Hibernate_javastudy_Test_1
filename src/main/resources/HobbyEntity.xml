@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="ru.Hibernate.javastudy.dao.HobbyEntity">
+        <table name="hobby" schema="javastudy" catalog=""/>
+        <attributes>
+            <id name="hobbyId">
+                <column name="hobby_id" length="20"/>
+            </id>
+            <one-to-many name="contactHobbyDetailsByHobbyId" mapped-by="hobbyByHobbyId"
+                         target-entity="ru.Hibernate.javastudy.dao.ContactHobbyDetailEntity"/>
+        </attributes>
+    </entity>
+</entity-mappings>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="ru.Hibernate.javastudy.dao.ContactEntity">
+        <table name="contact" schema="javastudy" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="firstName">
+                <column name="first_name" length="60"/>
+            </basic>
+            <basic name="lastName">
+                <column name="last_name" length="40"/>
+            </basic>
+            <basic name="birthDate">
+                <column name="birth_date" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="version">
+                <column name="version" precision="-1"/>
+            </basic>
+            <one-to-many name="contactHobbyDetailsById" mapped-by="contactByContactId"
+                         target-entity="ru.Hibernate.javastudy.dao.ContactHobbyDetailEntity"/>
+        </attributes>
+    </entity>
+</entity-mappings>

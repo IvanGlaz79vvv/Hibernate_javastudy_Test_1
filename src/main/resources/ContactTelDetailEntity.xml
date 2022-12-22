@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="ru.Hibernate.javastudy.dao.ContactTelDetailEntity">
+        <table name="contact_tel_detail" schema="javastudy" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="contactId">
+                <column name="contact_id" precision="-1"/>
+            </basic>
+            <basic name="telType">
+                <column name="tel_type" length="20"/>
+            </basic>
+            <basic name="telNumber">
+                <column name="tel_number" length="20"/>
+            </basic>
+            <basic name="version">
+                <column name="version" precision="-1"/>
+            </basic>
+            <many-to-one name="contactByContactId" optional="true"
+                         target-entity="ru.Hibernate.javastudy.dao.ContactEntity">
+                <join-column name="contact_id" referenced-column-name="id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>
