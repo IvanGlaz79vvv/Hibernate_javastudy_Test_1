@@ -1,4 +1,4 @@
-package ru.Hibernate.javastudy.dao;
+package main.dao;
 
 import javax.persistence.*;
 import java.util.Collection;

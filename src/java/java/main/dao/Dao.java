@@ -1,15 +1,23 @@
-package ru.Hibernate.javastudy.dao;
+package main.dao;
 
-import Util.Util;
+import main.util.Util;
 
-import javax.xml.crypto.Data;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Date;
 
 public class Dao {
-
+    private static int id = 0;
+    private static String first_name = null;
+    private static String last_name = null;
+    private static Date birth_date = null;
+    private static int version = 0;
     private static final Connection conn = Util.getConnection();
-    private final String CREATE_USER = "INSERT INTO contact " +
+    private static final String CREATE_USER = "INSERT INTO contact " +
             "(first_name" +
             ", last_name" +
             ", birt_date" +
@@ -34,7 +42,35 @@ public class Dao {
      System.out.println(d2.getHours());
      }
      */
-    public static  void save_user(String first_name, String last_name, Data date, )
+    public static void save_user(String first_name, String last_name, String birth_date, int version) throws SQLException, IOException {
+        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
 
+        conn.setAutoCommit(false);
+        try (PreparedStatement pstmt = conn.prepareStatement(CREATE_USER)) {
+
+            System.out.println("Введите имя:");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            first_name = reader.readLine();
+
+            System.out.println("Введите ФАМИЛИЮ:");
+            last_name = reader.readLine();
+
+            System.out.println("Введите день рождения");
+            birth_date = reader.readLine();
+
+            pstmt.setString(1, first_name);
+            pstmt.setString(2, last_name);
+            pstmt.setDate(3, java.sql.Date.valueOf(birth_date));
+            pstmt.setInt(4, version);
+
+            pstmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException e) {
+            conn.rollback();
+            System.out.println("<<<saveUser>>> \n" + e);
+        } finally {
+            conn.setAutoCommit(true);
+        }
+    }
 }
 

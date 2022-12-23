@@ -1,4 +1,4 @@
-package Util;
+package main.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ public class Util {
         try {
             connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
         } catch (SQLException e) {
-            System.out.println("<<<Util getConnection()>>> Ошибка подключения");
+            System.out.println("<<<main.Util getConnection()>>> Ошибка подключения");
             e.printStackTrace();
         }
         return connection;
@@ -24,7 +24,7 @@ public class Util {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("<<<Util>>> \"com.mysql.cj.jdbc.Driver\"" + e);
+            System.out.println("<<<main.Util>>> \"com.mysql.cj.jdbc.Driver\"" + e);
             throw new RuntimeException(e);
         }
     }

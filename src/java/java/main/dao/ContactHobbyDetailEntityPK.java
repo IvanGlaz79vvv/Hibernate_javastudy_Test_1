@@ -1,4 +1,4 @@
-package ru.Hibernate.javastudy.dao;
+package main.dao;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
